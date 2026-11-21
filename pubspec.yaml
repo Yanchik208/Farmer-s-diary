@@ -1,0 +1,22 @@
+name: farmer_journal
+description: Щоденник фермера в стилі Stardew Valley на Flutter + GetX.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Бібліотека GetX для архітектури, навігації та реактивного стану
+  get: ^4.6.6
+  # Бібліотека для роботи з камерою телефону та вибором файлів з галереї/ПК
+  image_picker: ^1.0.7
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/theme/
+    - assets/stickers/

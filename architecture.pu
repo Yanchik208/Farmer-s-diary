@@ -1,0 +1,60 @@
+
+@startuml
+skinparam backgroundColor #E2EAFC
+skinparam classAttributeIconSize 0
+
+package "main" {
+  class FarmerJournalApp {
+    + build(BuildContext context)
+  }
+}
+
+package "screens" {
+  class CoverScreen {
+    + build(BuildContext context)
+  }
+
+  class JournalScreen {
+    + build(BuildContext context)
+    - _buildDesktopSpread(JournalController controller)
+    - _buildMobileList(JournalController controller, {bool isDesktopMode})
+    - _buildNoteDetailPage(FarmNote note)
+  }
+}
+
+package "widgets" {
+  class NoteEditorDialog {
+    + createState() State<NoteEditorDialog>
+    + initState()
+    + build(BuildContext context)
+  }
+
+  class StickerPicker {
+    + build(BuildContext context)
+    - _buildStickerItem(String path, String name)
+  }
+}
+
+package "controllers" {
+  class JournalController {
+    + onInit()
+    + pickImage(ImageSource source): Future<Uint8List?>
+    + addNote(FarmNote note)
+    + updateNote(String id, FarmNote updatedNote)
+    + deleteNote(String id)
+  }
+}
+
+package "models" {
+  class FarmNote {
+  }
+}
+
+FarmerJournalApp --> CoverScreen 
+CoverScreen --> JournalScreen 
+JournalScreen --> JournalController 
+JournalScreen --> NoteEditorDialog 
+NoteEditorDialog --> StickerPicker 
+NoteEditorDialog --> JournalController 
+JournalController --> FarmNote 
+@enduml
